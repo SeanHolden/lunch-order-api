@@ -6,3 +6,6 @@ development:
   password:
   port: 3306
   encoding: utf8
+
+production:
+  url: <%= ENV['DATABASE_URL'] %>
