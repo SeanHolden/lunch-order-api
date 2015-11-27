@@ -16,7 +16,7 @@ class HatchApi < Sinatra::Base
     order = Order.new(text_order: text_order, name: name)
 
     if order.save
-      "Order placed for #{name}. Order: #{order}. Thanks!"
+      "Order placed for #{name}. Order: #{text_order}. Thanks!"
     else
       'Something went wrong'
     end
