@@ -6,9 +6,3 @@ development:
   password:
   port: 3306
   encoding: utf8
-
-production:
-  adapter: mysql2
-  host: <%= ENV['CLEARDB_DATABASE_URL'] %>
-  encoding: utf8
-  collation: utf8_general_ci
