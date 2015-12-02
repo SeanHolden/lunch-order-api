@@ -1,3 +1,4 @@
-require './app'
+require "sinatra"
+require "./app"
 
-run HatchApi
+run HatchApi::Application

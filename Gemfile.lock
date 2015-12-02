@@ -21,6 +21,7 @@ GEM
     i18n (0.7.0)
     json (1.8.3)
     minitest (5.8.1)
+    multi_json (1.11.2)
     mysql2 (0.3.20)
     rack (1.6.4)
     rack-protection (1.5.3)
@@ -33,6 +34,9 @@ GEM
     sinatra-activerecord (2.0.9)
       activerecord (>= 3.2)
       sinatra (~> 1.0)
+    sinatra-json (0.1.0)
+      multi_json (~> 1.0)
+      sinatra (~> 1.0)
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.1)
@@ -43,12 +47,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord (~> 4.2)
   foreman (= 0.78)
   mysql2 (~> 0.3.18)
   rake (~> 10.4)
   sinatra (~> 1.4)
   sinatra-activerecord (~> 2.0)
+  sinatra-json (~> 0.1)
 
 BUNDLED WITH
    1.10.6
