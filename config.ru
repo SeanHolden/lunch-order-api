@@ -1,4 +1,4 @@
 require "sinatra"
 require "./app"
 
-run HatchApi::Application
+run HatchApi
