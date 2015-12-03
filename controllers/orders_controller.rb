@@ -1,16 +1,15 @@
-class OrdersController < Sinatra::Base
-  include Controllers::Helpers
+class OrdersController < ApplicationController
+  helpers OrdersHelper
 
-  get '/orders' do
-    json OrderPresenter.all_orders
+  get '/' do
+    json todays_orders
   end
 
-  post '/orders' do
+  post '/' do
     if order.save
       json order_response.success
     else
       json order_response.error
     end
   end
-
 end

@@ -1,4 +1,9 @@
-require "sinatra"
-require "./app"
+require "sinatra/base"
+require 'sinatra/activerecord'
+require 'sinatra/json'
 
-run HatchApi
+load_order = "models,lib/response,helpers,presenters,controllers"
+Dir.glob("./{#{load_order}}/*.rb").each { |file| require file }
+
+map('/orders') { run OrdersController }
+map('/sms') { run SmsController }
