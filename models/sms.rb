@@ -8,6 +8,6 @@ class Sms
   end
 
   def client
-    @client ||= Sms::Twilio.new
+    @client ||= Sms::Plivo.new
   end
 end
