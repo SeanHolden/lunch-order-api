@@ -1,5 +1,4 @@
 module OrdersHelper
-
   def order
     Order.new(name: params[:name], text_order: params[:text_order])
   end
@@ -11,5 +10,4 @@ module OrdersHelper
   def todays_orders
     OrderPresenter.todays_orders
   end
-
 end

@@ -4,10 +4,15 @@ class SmsController < ApplicationController
   before(method: :post) { authenticate! }
 
   get '/' do
-    json message: 'testing 123'
+    sms.body
   end
 
   post '/' do
-    send_sms
+    if Order.any?
+      sms.send
+      json message: 'SMS sent', body: sms.body
+    else
+      json message: 'no orders placed today'
+    end
   end
 end
