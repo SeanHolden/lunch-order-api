@@ -1,15 +1,19 @@
 require "sinatra/base"
 require 'sinatra/activerecord'
 require 'sinatra/json'
-
-load_order = [
-  "config/initializers",
-  "models",
-  "models/*",
-  "lib/*",
-  "helpers",
-  "presenters",
-  "controllers",
-].join(',')
-
-Dir.glob("./{#{load_order}}/*.rb").each { |file| require file }
+require 'plivo'
+require './config/initializers/twilio'
+require './lib/configuration/sms'
+require './lib/response/order'
+require './models/sms/body'
+require './models/sms/client'
+require './models/sms/plivo'
+require './models/sms/twilio'
+require './models/order'
+require './models/sms'
+require './helpers/orders_helper'
+require './helpers/sms_helper'
+require './presenters/order_presenter'
+require './controllers/application_controller'
+require './controllers/orders_controller'
+require './controllers/sms_controller'

@@ -15,4 +15,8 @@ class SmsController < ApplicationController
       json message: 'no orders placed today'
     end
   end
+
+  post '/status' do
+    # save status in DB in a new "reports" table
+  end
 end

@@ -7,6 +7,7 @@ gem 'sinatra-json', '~> 0.1'
 gem 'rake', '~> 10.4'
 gem 'mysql2', '~> 0.3.18'
 gem 'twilio-ruby', '~> 4.2.1'
+gem 'plivo', '~> 0.3'
 
 group :development do
   gem 'foreman', '0.78'
