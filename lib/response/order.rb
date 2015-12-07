@@ -10,15 +10,25 @@ module Response
 
     def success
       {
-        message: "Order placed for #{name}.",
-        order: text_order,
+        response_type: 'in_channel',
+        text: "Order placed for #{name}.",
+        attachments: [
+          {
+            text: text_order
+          }
+        ]
       }
     end
 
     def error
       {
-        message: 'Something went wrong',
-        issue: 'Order did not save to database'
+        response_type: 'in_channel',
+        text: "Oh no, something went wrong.",
+        attachments: [
+          {
+            text: "Order for #{name} did not save to database."
+          }
+        ]
       }
     end
 
