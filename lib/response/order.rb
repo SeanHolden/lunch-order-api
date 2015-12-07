@@ -29,10 +29,6 @@ module Response
 
     private
 
-    def on_time?
-      DateTime.now < DateTime.parse("#{Date.today} 11:40")
-    end
-
     def order_placed
       {
         response_type: 'in_channel',
@@ -48,7 +44,7 @@ module Response
     def too_late
       {
         response_type: 'in_channel',
-        text: "Sorry, #{name}. Order was texted at 11:40am. It is currently #{time}",
+        text: "Sorry, #{name}. Order deadline was #{deadline}am. It is currently #{time}",
         attachments: [
           {
             text: "You can still text your own order with: #{to_number}"
@@ -61,8 +57,16 @@ module Response
       ENV["SMS_TO_NUMBER"]
     end
 
+    def on_time?
+      DateTime.now < DateTime.parse("#{Date.today} #{deadline}")
+    end
+
     def time
       Time.now.strftime("%I:%M%P")
+    end
+
+    def deadline
+      '11:40'
     end
   end
 end
