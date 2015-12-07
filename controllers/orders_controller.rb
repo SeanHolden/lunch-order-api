@@ -1,6 +1,8 @@
 class OrdersController < ApplicationController
   helpers OrdersHelper
 
+  before(method: :post) { authenticate! }
+
   get '/' do
     json todays_orders
   end

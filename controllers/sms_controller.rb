@@ -4,7 +4,11 @@ class SmsController < ApplicationController
   before(method: :post) { authenticate! }
 
   get '/' do
-    sms.body
+    if Order.any?
+      sms.body
+    else
+      json message: 'No orders placed today'
+    end
   end
 
   post '/' do
@@ -12,11 +16,11 @@ class SmsController < ApplicationController
       response = sms.send
       json message: 'SMS sent', body: sms.body, response: response
     else
-      json message: 'no orders placed today'
+      json message: 'No orders placed today'
     end
   end
 
   post '/status' do
-    # save status in DB in a new "reports" table
+    SmsDeliveryReport.create(status: params[:status])
   end
 end

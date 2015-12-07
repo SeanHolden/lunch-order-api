@@ -11,11 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151127154000) do
+ActiveRecord::Schema.define(version: 20151207203000) do
 
   create_table "orders", force: :cascade do |t|
     t.text     "text_order", limit: 65535, null: false
     t.string   "name",       limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "sms_delivery_reports", force: :cascade do |t|
+    t.text     "status",     limit: 65535, null: false
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
