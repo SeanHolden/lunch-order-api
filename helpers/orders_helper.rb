@@ -1,6 +1,6 @@
 module OrdersHelper
   def order
-    Order.new(name: params[:name], text_order: params[:text_order])
+    Order.new(name: params[:user_name], text_order: params[:text])
   end
 
   def order_response
