@@ -16,41 +16,30 @@ module Response
     end
 
     def error
-      {
-        response_type: 'in_channel',
-        text: "Oh no, something went wrong.",
-        attachments: [
-          {
-            text: "Order for #{name} did not save."
-          }
-        ]
-      }
+      display(
+        'Oh no, something went wrong.',
+        "Order for #{name} did not save."
+      )
     end
 
     private
 
     def order_placed
-      {
-        response_type: 'in_channel',
-        text: "Order placed for #{name}.",
-        attachments: [
-          {
-            text: "A text will be sent at 11:30am for:\n#{text_order}"
-          }
-        ]
-      }
+      display(
+        "Order placed for #{name}.",
+        "A text will be sent at #{deadline} for:\n#{text_order}"
+      )
     end
 
     def too_late
-      {
-        response_type: 'in_channel',
-        text: "Sorry, #{name}. Order deadline was #{deadline}am. It is currently #{time}",
-        attachments: [
-          {
-            text: "You can still text your own order with: #{to_number}"
-          }
-        ]
-      }
+      display(
+        "Sorry, #{name}. Order deadline was #{deadline}. It is currently #{time}",
+        "You can still text your own order with: #{to_number}"
+      )
+    end
+
+    def display(text, secondary)
+      InChannel.display(text, secondary)
     end
 
     def to_number
@@ -66,7 +55,7 @@ module Response
     end
 
     def deadline
-      '11:40'
+      '11:40am'
     end
   end
 end
