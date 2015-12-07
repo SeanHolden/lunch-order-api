@@ -2,6 +2,7 @@ require "sinatra/base"
 require 'sinatra/activerecord'
 require 'sinatra/json'
 require 'plivo'
+require 'date'
 require './config/initializers/twilio'
 require './lib/configuration/sms'
 require './lib/response/order'
