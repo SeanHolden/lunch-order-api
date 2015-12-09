@@ -12,6 +12,10 @@ module SmsHelper
     Configuration::Sms.new
   end
 
+  def no_orders_message
+   { message: 'No orders placed today' }
+  end
+
   def authorized?
     if request.path_info == '/status'
       true

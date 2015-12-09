@@ -7,7 +7,7 @@ class SmsController < ApplicationController
     if Order.any?
       sms.body
     else
-      json message: 'No orders placed today'
+      json no_orders_message
     end
   end
 
@@ -16,7 +16,7 @@ class SmsController < ApplicationController
       response = sms.send
       json message: 'SMS sent', body: sms.body, response: response
     else
-      json message: 'No orders placed today'
+      json no_orders_message
     end
   end
 
