@@ -68,12 +68,17 @@ describe SmsController do
         end
 
         it 'sms gets sent' do
+          expect(sms).to receive(:send)
+          post '/', nil, headers
+        end
+
+        it 'returns appropriate json response' do
           post '/', nil, headers
           expect(parsed_body).to eql(
             {
               'message' => 'SMS sent',
               'body' => sms_body,
-              'response' => 'response for sent SMS'
+              'response' => 'response for sent SMS',
             }
           )
         end
