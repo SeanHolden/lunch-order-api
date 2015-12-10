@@ -14,3 +14,17 @@ module FakeOrdersHelper
     { user_name: user_name, text: text }
   end
 end
+
+module FakeSmsHelper
+  class FakeRequest;end
+
+  def request
+    FakeRequest.new
+  end
+
+  def env
+    { 'HTTP_SMS_TOKEN' => token }
+  end
+end
+
+ENV['SMS_TO_NUMBER'] = '+447123456789'

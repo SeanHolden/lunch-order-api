@@ -1,8 +1,6 @@
 module OrdersHelper
   def authenticate!
     return if params[:token] == ENV['SLACK_TOKEN']
-    puts 'lol'
-
     halt 401, json({ status: '401', message: 'Not authorized' })
   end
 
