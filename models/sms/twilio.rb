@@ -8,6 +8,8 @@ class Sms
       client.messages.create(attributes)
     end
 
+    private
+
     def attributes
       {
         from: from_number,

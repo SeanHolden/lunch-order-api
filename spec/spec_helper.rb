@@ -28,3 +28,7 @@ module FakeSmsHelper
 end
 
 ENV['SMS_TO_NUMBER'] = '+447123456789'
+ENV['SMS_FROM_NUMBER'] = '+447987654321'
+ENV['SMS_STATUS_URL'] = 'http://test.com/status'
+ENV['PLIVO_AUTH_ID'] = 'plivo_auth_id'
+ENV['PLIVO_AUTH_TOKEN'] = 'plivo_auth_token'

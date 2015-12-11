@@ -8,6 +8,8 @@ class Sms
       client.send_message(attributes)
     end
 
+    private
+
     def attributes
       {
         src: from_number,
@@ -17,8 +19,6 @@ class Sms
         method: 'POST',
       }
     end
-
-    private
 
     def status_url
       ENV['SMS_STATUS_URL']
