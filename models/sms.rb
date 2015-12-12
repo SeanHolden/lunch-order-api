@@ -8,6 +8,6 @@ class Sms
   end
 
   def client
-    Sms::Plivo.new
+    Plivo.new
   end
 end
