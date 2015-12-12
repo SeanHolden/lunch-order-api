@@ -1,6 +1,7 @@
 require File.join(File.dirname(__FILE__), '..', 'config', 'boot')
 require 'sinatra'
 require 'rack/test'
+require 'webmock/rspec'
 
 set :environment, :test
 
@@ -8,6 +9,7 @@ RSpec.configure do |config|
   config.include Rack::Test::Methods
 end
 
+WebMock.disable_net_connect!(allow_localhost: true)
 
 module FakeOrdersHelper
   def params
@@ -24,6 +26,12 @@ module FakeSmsHelper
 
   def env
     { 'HTTP_SMS_TOKEN' => token }
+  end
+end
+
+module FakeSlackHelper
+  def params
+    { body: 'This is a body' }
   end
 end
 

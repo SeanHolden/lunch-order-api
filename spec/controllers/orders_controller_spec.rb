@@ -1,6 +1,5 @@
 require './spec/spec_helper'
 
-
 describe OrdersController do
   subject(:status) { last_response.status }
 
