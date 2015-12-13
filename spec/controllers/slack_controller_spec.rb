@@ -23,9 +23,11 @@ describe SlackController do
       expect(last_response.status).to eql(200)
     end
 
-    it 'returns json response' do
+    it 'returns xml response' do
       post '/', Body: 'This is a reply'
-      expect(last_response.body).to eql({ message: 'OK' }.to_json)
+      expect(last_response.body).to eql(
+        "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Response></Response>"
+      )
     end
   end
 

@@ -2,7 +2,11 @@ class SlackController < ApplicationController
   helpers SlackHelper
 
   post '/' do
-    sms_reply.send_to_slack_channel
-    json({ message: 'OK' })
+    content_type 'text/xml'
+
+    if params[:Body]
+      sms_reply.send_to_slack_channel
+      '<?xml version="1.0" encoding="UTF-8"?><Response></Response>'
+    end
   end
 end
