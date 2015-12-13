@@ -31,7 +31,7 @@ end
 
 module FakeSlackHelper
   def params
-    { body: 'This is a body' }
+    { Body: 'This is a body' }
   end
 end
 

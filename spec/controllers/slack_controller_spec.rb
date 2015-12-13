@@ -19,12 +19,12 @@ describe SlackController do
     end
 
     it 'returns status of 200' do
-      post '/', body: 'This is a reply'
+      post '/', Body: 'This is a reply'
       expect(last_response.status).to eql(200)
     end
 
     it 'returns json response' do
-      post '/', body: 'This is a reply'
+      post '/', Body: 'This is a reply'
       expect(last_response.body).to eql({ message: 'OK' }.to_json)
     end
   end

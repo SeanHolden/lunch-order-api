@@ -1,5 +1,7 @@
 module SlackHelper
   def sms_reply
-    Request::Slack.new(params[:body])
+    if params[:Body]
+      Request::Slack.new(params[:Body])
+    end
   end
 end
