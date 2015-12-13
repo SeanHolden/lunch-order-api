@@ -27,10 +27,11 @@ describe SmsController do
 
     context 'orders have been placed today' do
       let(:orders) { true }
+      let(:response_body) { JSON.parse(last_response.body) }
 
       it 'returns body of the proposed SMS' do
         get '/'
-        expect(last_response.body).to eql(sms_body)
+        expect(response_body).to eql({ 'sms_body' => sms_body })
       end
     end
   end

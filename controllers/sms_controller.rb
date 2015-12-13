@@ -5,7 +5,7 @@ class SmsController < ApplicationController
 
   get '/' do
     if Order.any?
-      sms.body
+      json({ sms_body: sms.body })
     else
       json no_orders_message
     end
