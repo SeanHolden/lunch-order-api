@@ -13,8 +13,8 @@ class SmsController < ApplicationController
 
   post '/' do
     if Order.any?
-      response = sms.send
-      json message: 'SMS sent', body: sms.body, response: response
+      sms.send
+      json message: 'SMS sent', body: sms.body
     else
       json no_orders_message
     end

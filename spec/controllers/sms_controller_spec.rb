@@ -78,7 +78,6 @@ describe SmsController do
             {
               'message' => 'SMS sent',
               'body' => sms_body,
-              'response' => 'response for sent SMS',
             }
           )
         end

@@ -3,13 +3,13 @@ require './spec/spec_helper'
 describe Sms do
   subject(:sms) { Sms.new }
 
-  let(:plivo_client) { double(Sms::Plivo) }
+  let(:twilio_client) { double(Sms::Twilio) }
 
-  before { allow(Sms::Plivo).to receive(:new).and_return(plivo_client) }
+  before { allow(Sms::Twilio).to receive(:new).and_return(twilio_client) }
 
   describe '#send' do
     it 'calls send method on the client' do
-      expect(plivo_client).to receive(:send)
+      expect(twilio_client).to receive(:send)
       sms.send
     end
   end
@@ -26,7 +26,7 @@ describe Sms do
 
   describe '#client' do
     it 'creates new client' do
-      expect(sms.client).to eql(plivo_client)
+      expect(sms.client).to eql(twilio_client)
     end
   end
 end

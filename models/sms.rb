@@ -8,6 +8,6 @@ class Sms
   end
 
   def client
-    Plivo.new
+    Twilio.new
   end
 end
