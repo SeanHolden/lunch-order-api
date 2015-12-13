@@ -9,7 +9,7 @@ describe SlackHelper do
 
     before do
       allow(Request::Slack).to receive(:new).
-        with('This is a body').
+        with('This is a body', 'The Hatch SMS Reply').
         and_return(request_object)
     end
 

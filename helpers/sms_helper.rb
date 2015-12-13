@@ -16,6 +16,12 @@ module SmsHelper
    { message: 'No orders placed today' }
   end
 
+  def sms_status
+    if params[:MessageStatus]
+      Request::Slack.new(params[:MessageStatus], 'The Hatch SMS Status')
+    end
+  end
+
   def authorized?
     if request.path_info == '/status'
       true

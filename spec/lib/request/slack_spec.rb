@@ -4,7 +4,7 @@ describe Request::Slack do
   let(:webhook_url) { ENV['SLACK_WEBHOOK_URL'] }
 
   describe '#send_to_channel' do
-    let(:slack) { Request::Slack.new('This is a reply') }
+    let(:slack) { Request::Slack.new('This is a reply', 'username') }
     let(:faraday) { double(Faraday) }
 
     before do

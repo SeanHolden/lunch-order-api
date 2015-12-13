@@ -1,10 +1,10 @@
 module Request
   class Slack
-    attr_reader :body
-    private :body
+    attr_reader :body, :username
+    private :body, :username
 
-    def initialize(body)
-      @body = body
+    def initialize(body, username)
+      @body, @username = body, username
     end
 
     def send_to_slack_channel
@@ -25,7 +25,7 @@ module Request
 
     def payload
       {
-        username: 'The Hatch SMS Reply',
+        username: username,
         icon_url: 'http://i.imgur.com/3yy0FP8.png',
         text: body
       }

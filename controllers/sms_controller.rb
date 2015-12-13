@@ -1,5 +1,5 @@
 class SmsController < ApplicationController
-  helpers SmsHelper
+  helpers SmsHelper, SlackHelper
 
   before(method: :post) { authenticate! }
 
@@ -21,6 +21,7 @@ class SmsController < ApplicationController
   end
 
   post '/status' do
+    sms_status.send_to_channel
     SmsDeliveryReport.create(status: params[:MessageStatus])
   end
 end

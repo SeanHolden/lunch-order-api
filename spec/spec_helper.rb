@@ -20,6 +20,10 @@ end
 module FakeSmsHelper
   class FakeRequest;end
 
+  def params
+    { MessageStatus: 'sent' }
+  end
+
   def request
     FakeRequest.new
   end
