@@ -17,9 +17,7 @@ module SmsHelper
   end
 
   def sms_status
-    if params[:MessageStatus]
-      Request::Slack.new(params[:MessageStatus], 'The Hatch SMS Status')
-    end
+    Request::Slack.new(params[:MessageStatus], 'The Hatch SMS Status')
   end
 
   def authorized?
