@@ -15,6 +15,7 @@ class Sms
         from: from_number,
         to: to_number,
         body: body,
+        status_callback: ENV['SMS_STATUS_URL']
       }
     end
   end

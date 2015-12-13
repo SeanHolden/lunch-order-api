@@ -21,6 +21,6 @@ class SmsController < ApplicationController
   end
 
   post '/status' do
-    SmsDeliveryReport.create(status: params[:status])
+    SmsDeliveryReport.create(status: params[:MessageStatus])
   end
 end

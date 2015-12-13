@@ -22,7 +22,8 @@ describe Sms::Twilio do
       {
         from: '+447987654321',
         to: '+447123456789',
-        body: 'sms body'
+        body: 'sms body',
+        status_callback: 'http://test.com/status',
       }
     }
 
