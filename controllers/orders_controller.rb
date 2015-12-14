@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   helpers OrdersHelper
 
-  before(method: :post) { authenticate! }
+  before(method: :post) { slack_authenticate! }
 
   get '/' do
     json todays_orders

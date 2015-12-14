@@ -1,10 +1,10 @@
 class Sms
-  def send
-    client.send
+  def send_sms
+    client.send_sms
   end
 
   def body
-    Body.new.to_s
+    Client.new.body
   end
 
   def client

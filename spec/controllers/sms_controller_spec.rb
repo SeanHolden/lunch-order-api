@@ -65,11 +65,11 @@ describe SmsController do
         let(:orders) { true }
 
         before do
-          allow(sms).to receive(:send).and_return('response for sent SMS')
+          allow(sms).to receive(:send_sms).and_return('response for sent SMS')
         end
 
         it 'sms gets sent' do
-          expect(sms).to receive(:send)
+          expect(sms).to receive(:send_sms)
           post '/', nil, headers
         end
 

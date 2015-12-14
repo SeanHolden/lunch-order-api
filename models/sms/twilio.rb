@@ -4,7 +4,7 @@ class Sms
       ::Twilio::REST::Client.new
     end
 
-    def send
+    def send_sms
       client.messages.create(attributes)
     end
 

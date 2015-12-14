@@ -16,7 +16,7 @@ describe Sms::Twilio do
     end
   end
 
-  describe '#send' do
+  describe '#send_sms' do
     let(:body) { double(Sms::Body, to_s: 'sms body') }
     let(:expected_attributes) {
       {
@@ -33,7 +33,7 @@ describe Sms::Twilio do
 
     it 'calls Twilio create method' do
       expect(msg_object).to receive(:create).with(expected_attributes)
-      sms_twilio.send
+      sms_twilio.send_sms
     end
   end
 end

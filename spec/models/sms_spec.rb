@@ -7,10 +7,10 @@ describe Sms do
 
   before { allow(Sms::Twilio).to receive(:new).and_return(twilio_client) }
 
-  describe '#send' do
+  describe '#send_sms' do
     it 'calls send method on the client' do
-      expect(twilio_client).to receive(:send)
-      sms.send
+      expect(twilio_client).to receive(:send_sms)
+      sms.send_sms
     end
   end
 
