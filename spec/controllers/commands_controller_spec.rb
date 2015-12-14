@@ -67,7 +67,7 @@ describe CommandsController do
       let(:expected_response) {
         {
           'response_type' => 'in_channel',
-          'text' => 'Reply was sent',
+          'text' => 'Sending Reply...',
           'attachments'=>[{ 'text' => 'text' }],
         }
       }
@@ -93,7 +93,7 @@ describe CommandsController do
       let(:expected_response) {
         {
           'response_type' => 'in_channel',
-          'text' => 'Order cancelled for John Smith',
+          'text' => 'All orders cancelled for John Smith',
           'attachments'=>[{ 'text' => '' }],
         }
       }
