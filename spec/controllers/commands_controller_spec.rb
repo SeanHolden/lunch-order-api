@@ -63,28 +63,55 @@ describe CommandsController do
 
     context 'has reply command' do
       let(:text) { 'reply this is my response' }
-      let(:custom_reply) { double(CustomReply) }
+      let(:custom_reply) { double(CustomReply, send_sms: 'sent', body: 'text') }
+      let(:expected_response) {
+        {
+          'response_type' => 'in_channel',
+          'text' => 'Reply was sent',
+          'attachments'=>[{ 'text' => 'text' }],
+        }
+      }
 
-      before { allow(CustomReply).to receive(:new).and_return(custom_reply) }
+      before do
+        allow(CustomReply).to receive(:new).and_return(custom_reply)
+      end
 
       it 'sends custom SMS' do
         expect(custom_reply).to receive(:send_sms)
         post '/', params
+      end
+
+      it 'responds with correct response' do
+        post '/', params
+        expect(JSON.parse(last_response.body)).to eql(expected_response)
       end
     end
 
     context 'has cancel command' do
       let(:text) { 'cancel' }
       let(:todays_orders) { [double('TodaysOrders')] }
+      let(:expected_response) {
+        {
+          'response_type' => 'in_channel',
+          'text' => 'Order cancelled for John Smith',
+          'attachments'=>[{ 'text' => '' }],
+        }
+      }
 
       before do
         allow(Order).to receive(:todays_orders).and_return(todays_orders)
+        allow(todays_orders).to receive(:destroy_all)
       end
 
       it 'cancels all orders for that user' do
         expect(todays_orders).to receive(:destroy_all).
           with({name: 'John Smith'})
         post '/', params
+      end
+
+      it 'responds with correct response' do
+        post '/', params
+        expect(JSON.parse(last_response.body)).to eql(expected_response)
       end
     end
   end

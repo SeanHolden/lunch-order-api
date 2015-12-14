@@ -6,8 +6,6 @@ class CustomReply < Sms::Twilio
     @text = text
   end
 
-  private
-
   def body
     text.split(' ')[1..-1].join(' ')
   end
