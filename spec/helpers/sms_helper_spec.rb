@@ -25,10 +25,10 @@ describe SmsHelper do
   end
 
   describe '#sms_status' do
-    let(:request_object) { double(Request::Slack) }
+    let(:request_object) { double(Request::SlackSmsStatus) }
 
     before do
-      allow(Request::Slack).to receive(:new).
+      allow(Request::SlackSmsStatus).to receive(:new).
         with('sent', 'The Hatch SMS Status').
         and_return(request_object)
     end

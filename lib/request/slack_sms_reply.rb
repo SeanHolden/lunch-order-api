@@ -1,5 +1,5 @@
 module Request
-  class Slack
+  class SlackSmsReply
     attr_reader :body, :username
     private :body, :username
 

@@ -1,15 +1,13 @@
 require './spec/spec_helper'
 
-describe Request::Slack do
-  let(:webhook_url) { ENV['SLACK_WEBHOOK_URL'] }
-
+describe Request::SlackSmsStatus do
   describe '#send_to_channel' do
-    let(:slack) { Request::Slack.new('This is a reply', 'username') }
+    let(:slack) { Request::SlackSmsStatus.new('This is a reply', 'username') }
     let(:faraday) { double(Faraday) }
 
     before do
       allow(Faraday).to receive(:new).
-        with(url: webhook_url).and_return(faraday)
+        with(url: ENV['SLACK_WEBHOOK_URL']).and_return(faraday)
     end
 
     it 'sends post request' do
