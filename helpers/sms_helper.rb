@@ -8,10 +8,6 @@ module SmsHelper
     Sms.new
   end
 
-  def config
-    Configuration::Sms.new
-  end
-
   def no_orders_message
    { message: 'No orders placed today' }
   end
@@ -24,7 +20,7 @@ module SmsHelper
     if request.path_info == '/status'
       true
     else
-      env['HTTP_SMS_TOKEN'] == config.header_token
+      params[:token] == ENV['SMS_TOKEN']
     end
   end
 end

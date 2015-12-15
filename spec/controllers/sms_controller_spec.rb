@@ -37,7 +37,7 @@ describe SmsController do
   end
 
   describe 'POST /sms' do
-    let(:headers) { { 'HTTP_SMS_TOKEN' => token} }
+    let(:params) { { token: token} }
     let(:token) { 'token' }
 
     before do
@@ -48,7 +48,7 @@ describe SmsController do
       let(:token) { 'invalid_token' }
 
       it 'returns status of 401' do
-        post '/', nil, headers
+        post '/', params
         expect(last_response.status).to eql(401)
       end
     end
@@ -56,7 +56,7 @@ describe SmsController do
     context 'authentication passes' do
       context 'no orders placed today' do
         it 'returns appropriate json response' do
-          post '/', nil, headers
+          post '/', params
           expect(parsed_body).to eql(no_orders_message)
         end
       end
@@ -70,11 +70,11 @@ describe SmsController do
 
         it 'sms gets sent' do
           expect(sms).to receive(:send_sms)
-          post '/', nil, headers
+          post '/', params
         end
 
         it 'returns appropriate json response' do
-          post '/', nil, headers
+          post '/', params
           expect(parsed_body).to eql(
             {
               'message' => 'SMS sent',

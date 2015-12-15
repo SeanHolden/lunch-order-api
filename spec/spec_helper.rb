@@ -21,7 +21,7 @@ module FakeSmsHelper
   class FakeRequest;end
 
   def params
-    { MessageStatus: 'sent' }
+    { MessageStatus: 'sent', token: 'token' }
   end
 
   def request
