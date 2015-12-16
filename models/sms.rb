@@ -4,10 +4,12 @@ class Sms
   end
 
   def body
-    Client.new.body
+    client.body.to_s
   end
 
+  private
+
   def client
-    Twilio.new
+    Client.new
   end
 end

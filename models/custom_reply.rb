@@ -1,4 +1,4 @@
-class CustomReply < Sms::Twilio
+class CustomReply < Sms::Client
   attr_reader :text
   private :text
 
