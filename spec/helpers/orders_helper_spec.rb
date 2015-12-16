@@ -22,10 +22,10 @@ describe OrdersHelper do
   end
 
   describe '#order_response' do
-    let(:order_response_object) { double(Response::Order) }
+    let(:order_response_object) { double(SlackResponse::Order) }
 
     before do
-      allow(Response::Order).to receive(:new).
+      allow(SlackResponse::Order).to receive(:new).
         with(user_name, text).
         and_return(order_response_object)
     end

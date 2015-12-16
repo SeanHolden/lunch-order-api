@@ -18,14 +18,14 @@ module FakeOrdersHelper
 end
 
 module FakeSmsHelper
-  class FakeRequest;end
+  class FakeWebhook;end
 
   def params
     { MessageStatus: 'sent', token: 'token' }
   end
 
   def request
-    FakeRequest.new
+    FakeWebhook.new
   end
 
   def env

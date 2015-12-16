@@ -25,14 +25,14 @@ describe OrdersController do
     let(:text) { 'Chicken Burger' }
     let(:token) { 'token' }
     let(:params) { { token: token, user_name: user_name, text: text } }
-    let(:order_response) { double(Response::Order) }
+    let(:order_response) { double(SlackResponse::Order) }
     let(:order_saved) { true }
 
     before do
       allow(ENV).to receive(:[]).with('SLACK_TOKEN').and_return('token')
       allow(Order).to receive(:new).
         with(name: user_name, text_order: text).and_return(order)
-      allow(Response::Order).to receive(:new).
+      allow(SlackResponse::Order).to receive(:new).
         with(user_name, text).and_return(order_response)
       allow(order).to receive(:save).and_return(order_saved)
       allow(order_response).to receive(:success).and_return(true)

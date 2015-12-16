@@ -1,8 +1,8 @@
 require './spec/spec_helper'
 
-describe Request::SlackSmsReply do
+describe Webhook::SlackSmsReply do
   describe '#send_to_channel' do
-    let(:slack) { Request::SlackSmsReply.new('This is a reply', 'username') }
+    let(:slack) { Webhook::SlackSmsReply.new('This is a reply', 'username') }
     let(:faraday) { double(Faraday) }
 
     before do

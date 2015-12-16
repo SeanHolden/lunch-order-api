@@ -1,6 +1,6 @@
 module CommandsHelper
   def formatted_slack_response(response_text, secondary)
-    Response::InChannel.new(response_text, secondary).display
+    SlackResponse::Formatter.new(response_text, secondary).display
   end
 
   def overseer?

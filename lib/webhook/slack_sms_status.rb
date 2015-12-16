@@ -1,4 +1,4 @@
-module Request
+module Webhook
   class SlackSmsStatus < SlackSmsReply
 
     private

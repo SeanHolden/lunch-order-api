@@ -18,10 +18,10 @@ describe SmsHelper do
   end
 
   describe '#sms_status' do
-    let(:request_object) { double(Request::SlackSmsStatus) }
+    let(:request_object) { double(Webhook::SlackSmsStatus) }
 
     before do
-      allow(Request::SlackSmsStatus).to receive(:new).
+      allow(Webhook::SlackSmsStatus).to receive(:new).
         with('sent', 'The Hatch SMS Status').
         and_return(request_object)
     end
@@ -34,12 +34,12 @@ describe SmsHelper do
   describe '#authorized?' do
     subject { authorized? }
 
-    let(:request_object) { double('FakeRequest', path_info: path) }
+    let(:request_object) { double('FakeWebhook', path_info: path) }
     let(:path) { '/sms' }
     let(:token) { 'token' }
 
     before do
-      allow(FakeSmsHelper::FakeRequest).to receive(:new).and_return(request_object)
+      allow(FakeSmsHelper::FakeWebhook).to receive(:new).and_return(request_object)
       allow(ENV).to receive(:[]).with('SMS_TOKEN').and_return(token)
     end
 

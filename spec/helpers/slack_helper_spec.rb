@@ -5,10 +5,10 @@ describe SlackHelper do
   include FakeSlackHelper
 
   describe '#sms_reply' do
-    let(:request_object) { double(Request::SlackSmsReply) }
+    let(:request_object) { double(Webhook::SlackSmsReply) }
 
     before do
-      allow(Request::SlackSmsReply).to receive(:new).
+      allow(Webhook::SlackSmsReply).to receive(:new).
         with('This is a body', 'The Hatch SMS Reply').
         and_return(request_object)
     end

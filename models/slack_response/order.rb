@@ -1,4 +1,4 @@
-module Response
+module SlackResponse
   class Order
     attr_reader :name, :text_order
     private :name, :text_order
@@ -27,7 +27,7 @@ module Response
     def order_placed
       display(
         "Order placed for #{name}.",
-        "A text will be sent at #{deadline} for:\n#{text_order}\nIt will be ready for pickup at 12pm."
+        "A text will be sent at #{deadline} for:\n#{text_order}\nIt will be ready for pickup at #{pickup}"
       )
     end
 
@@ -39,7 +39,7 @@ module Response
     end
 
     def display(text, secondary)
-      InChannel.display(text, secondary)
+      Formatter.display(text, secondary)
     end
 
     def to_number
@@ -55,7 +55,11 @@ module Response
     end
 
     def deadline
-      '11:30am'
+      '11:00am'
+    end
+
+    def pickup
+      '12:00pm'
     end
   end
 end

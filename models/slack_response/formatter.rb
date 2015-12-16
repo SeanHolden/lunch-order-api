@@ -1,5 +1,5 @@
-module Response
-  class InChannel
+module SlackResponse
+  class Formatter
     attr_reader :text, :secondary
     private :text, :secondary
 

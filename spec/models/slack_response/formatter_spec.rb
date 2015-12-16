@@ -1,11 +1,11 @@
 require './spec/spec_helper'
 
-describe Response::InChannel do
+describe SlackResponse::Formatter do
   let(:text) { 'main text' }
   let(:secondary) { 'secondary text' }
 
   describe '#display' do
-    subject { Response::InChannel.new(text, secondary).display }
+    subject { SlackResponse::Formatter.new(text, secondary).display }
 
     let(:output) {
       {

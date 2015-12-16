@@ -4,7 +4,7 @@ module OrdersHelper
   end
 
   def order_response
-    Response::Order.new(name, text_order)
+    SlackResponse::Order.new(name, text_order)
   end
 
   def todays_orders
