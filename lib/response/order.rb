@@ -55,7 +55,7 @@ module Response
     end
 
     def deadline
-      '11:40am'
+      '11:30am'
     end
   end
 end

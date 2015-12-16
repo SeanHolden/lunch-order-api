@@ -17,7 +17,7 @@ describe Response::Order do
     context 'before time deadline' do
       let(:mock_time) { DateTime.parse("2016-01-01 10:00am") }
       let(:text) { 'Order placed for John Smith.' }
-      let(:secondary) { "A text will be sent at 11:40am for:\nChicken Burger" }
+      let(:secondary) { "A text will be sent at 11:30am for:\nChicken Burger\nIt will be ready for pickup at 12pm." }
 
       it 'returns order_placed message' do
         expect(Response::InChannel).to receive(:display).with(text, secondary)
@@ -28,7 +28,7 @@ describe Response::Order do
     context 'after time deadline' do
       let(:mock_time) { DateTime.parse("2016-01-01 11:45am") }
       let(:text) {
-        'Sorry, John Smith. Order deadline was 11:40am. It is currently 11:45am'
+        'Sorry, John Smith. Order deadline was 11:30am. It is currently 11:45am'
       }
       let(:secondary) {
         'You can still text your own order with: +447123456789'
