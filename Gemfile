@@ -7,7 +7,6 @@ gem 'sinatra-json', '~> 0.1'
 gem 'rake', '~> 10.4'
 gem 'mysql2', '~> 0.3.18'
 gem 'twilio-ruby', '~> 4.2.1'
-gem 'plivo', '~> 0.3'
 gem 'faraday', '0.9.2'
 
 group :development do
