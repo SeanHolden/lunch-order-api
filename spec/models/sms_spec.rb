@@ -4,8 +4,13 @@ describe Sms do
   subject(:sms) { Sms.new }
 
   let(:client) { double(Sms::Client) }
+  let(:body) { double(Sms::Body, to_s: 'this is the text body') }
 
-  before { allow(Sms::Client).to receive(:new).and_return(client) }
+  before do
+    allow(Sms::Body).to receive(:new).and_return(body)
+    allow(Sms::Client).to receive(:new).with('this is the text body').
+      and_return(client)
+  end
 
   describe '#send_sms' do
     it 'calls send method on the client' do
@@ -15,10 +20,6 @@ describe Sms do
   end
 
   describe '#body' do
-    let(:body) { double(Sms::Body, to_s: 'this is the text body') }
-
-    before { allow(client).to receive(:body).and_return(body) }
-
     it 'calls to_s method on body object' do
       expect(sms.body).to eql('this is the text body')
     end

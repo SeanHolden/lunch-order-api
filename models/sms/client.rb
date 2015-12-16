@@ -1,7 +1,10 @@
 class Sms
   class Client
-    def body
-      Sms::Body.new.to_s
+    attr_reader :body
+    private :body
+
+    def initialize(body)
+      @body = body
     end
 
     def client

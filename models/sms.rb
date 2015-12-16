@@ -4,12 +4,12 @@ class Sms
   end
 
   def body
-    client.body.to_s
+    Body.new.to_s
   end
 
   private
 
   def client
-    Client.new
+    Client.new(body)
   end
 end

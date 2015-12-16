@@ -1,22 +1,13 @@
 require './spec/spec_helper'
 
 describe Sms::Client do
-  subject(:client) { Sms::Client.new }
+  subject(:client) { Sms::Client.new('sms body') }
 
-  let(:body) { double(Sms::Body, to_s: 'sms body') }
   let(:twilio_object) { double(::Twilio::REST::Client, messages: msg_object) }
   let(:msg_object) { double }
 
   before do
     allow(::Twilio::REST::Client).to receive(:new).and_return(twilio_object)
-    allow(Sms::Body).to receive(:new).and_return(body)
-  end
-
-  describe '#body' do
-    it 'returns SMS body' do
-      expect(body).to receive(:to_s)
-      Sms::Client.new.body
-    end
   end
 
   describe '#client' do
