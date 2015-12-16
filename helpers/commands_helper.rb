@@ -1,6 +1,10 @@
 module CommandsHelper
-  def slack_formatted_response(response_text, secondary)
+  def formatted_slack_response(response_text, secondary)
     Response::InChannel.new(response_text, secondary).display
+  end
+
+  def overseer?
+    Overseer.pluck(:user_id).include?(user_id)
   end
 
   def cancel_user_orders
@@ -8,7 +12,11 @@ module CommandsHelper
   end
 
   def reply
-    @reply ||= CustomReply.new(text)
+    Sms::Client.new(formatted_reply)
+  end
+
+  def formatted_reply
+    CustomReply.format(text)
   end
 
   def command
@@ -17,14 +25,18 @@ module CommandsHelper
 
   def place_order
     if order.save
-      json order_response.success
+      order_response.success
     else
-      json order_response.error
+      order_response.error
     end
   end
 
   def name
     params[:user_name]
+  end
+
+  def user_id
+    params[:user_id]
   end
 
   def text

@@ -1,4 +1,4 @@
-class CustomReply < Sms::Client
+class CustomReply
   attr_reader :text
   private :text
 
@@ -6,7 +6,11 @@ class CustomReply < Sms::Client
     @text = text
   end
 
-  def body
+  def self.format(text)
+    new(text).format
+  end
+
+  def format
     text.split(' ')[1..-1].join(' ')
   end
 end
