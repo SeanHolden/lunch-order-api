@@ -27,7 +27,7 @@ module Response
     def order_placed
       display(
         "Order placed for #{name}.",
-        "A text will be sent at #{deadline} for:\n#{text_order}"
+        "A text will be sent at #{deadline} for:\n#{text_order}\nIt will be ready for pickup at 12pm."
       )
     end
 
