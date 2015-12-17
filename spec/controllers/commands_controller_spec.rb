@@ -3,17 +3,25 @@ require './spec/spec_helper'
 describe CommandsController do
   describe 'POST /commands' do
     let(:params) {
-      { text: text, user_name: user_name, token: token, user_id: '123' }
+      {
+        text: text,
+        user_name: user_name,
+        token: token,
+        user_id: '123',
+        channel_id: channel_id
+      }
     }
     let(:text) { 'this is an order' }
     let(:user_name) { 'John Smith' }
     let(:order) { double(Order) }
     let(:token) { 'token' }
+    let(:channel_id) { '456' }
     let(:order_response) { double(SlackResponse::Order) }
     let(:order_saved) { true }
 
     before do
       allow(ENV).to receive(:[]).with('SLACK_TOKEN').and_return('token')
+      allow(ENV).to receive(:[]).with('SLACK_CHANNEL_ID').and_return('456')
       allow(Order).to receive(:new).
         with(name: user_name, text_order: text).and_return(order)
       allow(SlackResponse::Order).to receive(:new).
@@ -28,6 +36,29 @@ describe CommandsController do
       it 'returns status of 401' do
         post '/', params
         expect(last_response.status).to eql(401)
+      end
+    end
+
+    context 'invalid channel_id' do
+      let(:channel_id) { '111' }
+      let(:expected_hash) {
+        {
+          response_type: 'in_channel',
+          text: 'Wrong channel, silly!',
+          attachments: [
+            { text: 'This command will only work in #the-hatch' }
+          ]
+        }
+      }
+
+      it 'returns status of 401' do
+        post '/', params
+        expect(last_response.status).to eql(401)
+      end
+
+      it 'returns appropriate response' do
+        post '/', params
+        expect(last_response.body).to eql(expected_hash.to_json)
       end
     end
 

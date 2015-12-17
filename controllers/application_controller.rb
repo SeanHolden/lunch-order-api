@@ -7,7 +7,27 @@ class ApplicationController < Sinatra::Base
   end
 
   def slack_authenticate!
-    return if params[:token] == ENV['SLACK_TOKEN']
-    halt 401, json({ status: '401', message: 'Not authorized' })
+    if !valid_token?
+      halt 401, json({ message: 'Not authorized' })
+    elsif !correct_channel?
+      halt 401, json(wrong_channel_message)
+    end
+  end
+
+  private
+
+  def wrong_channel_message
+    SlackResponse::Formatter.display(
+      'Wrong channel, silly!',
+      'This command will only work in #the-hatch'
+    )
+  end
+
+  def valid_token?
+    params[:token] == ENV['SLACK_TOKEN']
+  end
+
+  def correct_channel?
+    params[:channel_id] == ENV['SLACK_CHANNEL_ID']
   end
 end
