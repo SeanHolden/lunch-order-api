@@ -26,6 +26,15 @@ describe Sms::Client do
       }
     }
 
+    before do
+      allow(ENV).to receive(:[]).with('SMS_TO_NUMBER').
+        and_return('+447123456789')
+      allow(ENV).to receive(:[]).with('SMS_FROM_NUMBER').
+        and_return('+447987654321')
+      allow(ENV).to receive(:[]).with('SMS_STATUS_URL').
+        and_return('http://test.com/status')
+    end
+
     it 'calls Twilio create method' do
       expect(msg_object).to receive(:create).with(expected_attributes)
       client.send_sms

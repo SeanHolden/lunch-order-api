@@ -34,6 +34,11 @@ describe SlackResponse::Order do
         'You can still text your own order with: +447123456789'
       }
 
+      before do
+        allow(ENV).to receive(:[]).with('SMS_TO_NUMBER').
+          and_return('+447123456789')
+      end
+
       it 'returns too_late message' do
         expect(SlackResponse::Formatter).to receive(:display).with(text, secondary)
         response_order.success
