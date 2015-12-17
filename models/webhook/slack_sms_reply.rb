@@ -1,26 +1,20 @@
 module Webhook
   class SlackSmsReply
-    attr_reader :body, :username
-    private :body, :username
+    attr_reader :username, :body
+    private :username, :body
 
-    def initialize(body, username)
-      @body, @username = body, username
+    def initialize(username, body)
+      @username, @body = username, body
     end
 
     def send_to_slack_channel
-      connection.post do |req|
-        req.headers['Content-Type'] = 'application/json'
-        req.body = payload.to_json
-      end
+      request.post
     end
 
     private
 
-    def connection
-      Faraday.new(url: url) do |faraday|
-        faraday.response(:logger)
-        faraday.adapter(Faraday.default_adapter)
-      end
+    def request
+      Request.new(url, payload)
     end
 
     def payload

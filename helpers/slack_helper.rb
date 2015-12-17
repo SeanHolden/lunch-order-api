@@ -1,5 +1,5 @@
 module SlackHelper
   def sms_reply
-    Webhook::SlackSmsReply.new(params[:Body], 'The Hatch SMS Reply')
+    Webhook::SlackSmsReply.new('The Hatch SMS Reply', params[:Body])
   end
 end

@@ -2,6 +2,8 @@ require './spec/spec_helper'
 
 describe SlackController do
   describe 'POST /slack' do
+    let(:url) { 'test.com' }
+    let(:sms_reply) { double(Webhook::SlackSmsReply) }
     let(:payload) {
       {
         username: 'The Hatch SMS Reply',
@@ -11,15 +13,14 @@ describe SlackController do
     }
 
     before do
-      stub_request(:post, ENV['SLACK_WEBHOOK_URL']).
-        with(
-          body: payload,
-          headers: { 'Content-Type' => 'application/json' }
-        )
+      allow(ENV).to receive(:[]).with('SLACK_WEBHOOK_URL').and_return(url)
+      allow(Webhook::SlackSmsReply).to receive(:new).
+        with('The Hatch SMS Reply', 'This is a reply').and_return(sms_reply)
+      allow(sms_reply).to receive(:send_to_slack_channel)
     end
 
     it 'returns status of 200' do
-      post '/', Body: 'This is a reply'
+      post '/', { Body: 'This is a reply' }
       expect(last_response.status).to eql(200)
     end
 
