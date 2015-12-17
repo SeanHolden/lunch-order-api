@@ -21,7 +21,7 @@ describe CommandsController do
 
     before do
       allow(ENV).to receive(:[]).with('SLACK_TOKEN').and_return('token')
-      allow(ENV).to receive(:[]).with('SLACK_CHANNEL_ID').and_return('456')
+      allow(ENV).to receive(:[]).with('SLACK_CHANNEL_IDS').and_return('456,789')
       allow(Order).to receive(:new).
         with(name: user_name, text_order: text).and_return(order)
       allow(SlackResponse::Order).to receive(:new).
@@ -158,6 +158,45 @@ describe CommandsController do
 
         it 'does not send a custom reply sms' do
           expect(sms_client).to_not receive(:send_sms)
+          post '/', params
+        end
+      end
+    end
+
+    context 'has check command' do
+      let(:text) { 'check' }
+      let(:order1) { double(Order, name: 'john', text_order: 'chicken') }
+      let(:order2) { double(Order, name: 'bob', text_order: 'beef') }
+
+      before do
+        allow(Overseer).to receive(:pluck).with(:user_id).and_return([user_id])
+        allow(Order).to receive(:todays_orders).and_return([order1, order2])
+      end
+
+      context 'is overseer' do
+        let(:user_id) { '123' }
+
+        it 'returns appropriate JSON response' do
+          post '/', params
+          expect(JSON.parse(last_response.body)).to eql(
+            {
+              'response_type' => 'in_channel',
+              'text' => 'Orders so far:',
+              'attachments' => [
+                {
+                  'text' => '[{"name":"john","order":"chicken"},{"name":"bob","order":"beef"}]'
+                }
+              ]
+            }
+          )
+        end
+      end
+
+      context 'is NOT overseer' do
+        let(:user_id) { '321' }
+
+        it 'does not perform a check' do
+          expect(order_response).to receive(:success)
           post '/', params
         end
       end

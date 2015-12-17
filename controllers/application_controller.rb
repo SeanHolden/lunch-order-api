@@ -28,6 +28,10 @@ class ApplicationController < Sinatra::Base
   end
 
   def correct_channel?
-    params[:channel_id] == ENV['SLACK_CHANNEL_ID']
+    valid_channel_ids.include?(params[:channel_id])
+  end
+
+  def valid_channel_ids
+    ENV['SLACK_CHANNEL_IDS'].split(',')
   end
 end

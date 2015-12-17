@@ -14,6 +14,10 @@ class Command
     command == 'reply'
   end
 
+  def check?
+    command == 'check'
+  end
+
   private
 
   def command
