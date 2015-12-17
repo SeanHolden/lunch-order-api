@@ -1,4 +1,12 @@
 module CommandsHelper
+  def order
+    Order.new(name: name, text_order: text)
+  end
+
+  def order_response
+    SlackResponse::Order.new(name, text)
+  end
+
   def formatted_slack_response(response_text, secondary)
     SlackResponse::Formatter.new(response_text, secondary).display
   end

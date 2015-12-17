@@ -11,9 +11,9 @@ end
 
 WebMock.disable_net_connect!(allow_localhost: true)
 
-module FakeOrdersHelper
+module FakeCommandsHelper
   def params
-    { user_name: user_name, text: text }
+    { user_name: user_name, text: text, user_id: user_id }
   end
 end
 

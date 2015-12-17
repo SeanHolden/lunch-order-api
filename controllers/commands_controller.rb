@@ -1,5 +1,5 @@
 class CommandsController < ApplicationController
-  helpers OrdersHelper, CommandsHelper
+  helpers CommandsHelper
 
   before(method: :post) { slack_authenticate! }
 
