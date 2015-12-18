@@ -22,7 +22,7 @@ describe SmsHelper do
 
     before do
       allow(Webhook::SlackSmsStatus).to receive(:new).
-        with('sent', 'The Hatch SMS Status').
+        with('The Hatch SMS Status', 'sent').
         and_return(request_object)
     end
 
