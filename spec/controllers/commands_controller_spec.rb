@@ -126,8 +126,6 @@ describe CommandsController do
       let(:text) { 'menu' }
       let(:expected_response) {
         {
-          'response_type' => 'in_channel',
-          'text' => 'menu',
           'attachments' => [
             {
               'fallback' => 'Menu',

@@ -14,8 +14,6 @@ class SlackResponse
 
       def display
         {
-          response_type: 'in_channel',
-          text: 'menu',
           attachments: [
             {
               fallback: 'Menu',

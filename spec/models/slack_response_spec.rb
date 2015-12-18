@@ -61,8 +61,6 @@ describe SlackResponse do
   describe '#menu' do
     let(:expected_hash) {
       {
-        response_type: 'in_channel',
-        text: 'menu',
         attachments: [
           {
             fallback: 'Menu',

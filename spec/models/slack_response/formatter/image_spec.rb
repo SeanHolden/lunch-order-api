@@ -8,8 +8,6 @@ describe SlackResponse::Formatter::Image do
 
     let(:output) {
       {
-        response_type: 'in_channel',
-        text: 'menu',
         attachments: [
           {
             fallback: 'Menu',
