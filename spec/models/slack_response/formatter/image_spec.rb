@@ -9,7 +9,7 @@ describe SlackResponse::Formatter::Image do
     let(:output) {
       {
         attachments: [
-          { image_url: url }
+          { fallback: 'Menu', image_url: url }
         ]
       }
     }

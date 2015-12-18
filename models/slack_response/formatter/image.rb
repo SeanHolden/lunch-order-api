@@ -16,7 +16,8 @@ class SlackResponse
         {
           attachments: [
             {
-              image_url: url
+              fallback: 'Menu',
+              image_url: url,
             }
           ]
         }

@@ -127,7 +127,10 @@ describe CommandsController do
       let(:expected_response) {
         {
           'attachments' => [
-            { 'image_url' => 'https://files.slack.com/files-pri/T024YSFJY-F0B69QBM5/hatch.jpg' }
+            {
+              'fallback' => 'Menu',
+              'image_url' => 'https://files.slack.com/files-pri/T024YSFJY-F0B69QBM5/hatch.jpg'
+            }
           ],
         }
       }
