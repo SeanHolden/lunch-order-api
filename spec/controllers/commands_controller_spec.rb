@@ -184,7 +184,7 @@ describe CommandsController do
               'text' => 'Orders so far:',
               'attachments' => [
                 {
-                  'text' => '[{"name":"john","order":"chicken"},{"name":"bob","order":"beef"}]'
+                  'text' => "john: chicken\nbob: beef"
                 }
               ]
             }

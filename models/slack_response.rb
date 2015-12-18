@@ -11,10 +11,20 @@ class SlackResponse
   end
 
   def reply
-    Formatter.display("Reply sent:", CustomReply.format(text))
+    Formatter.display("Reply sent:", reply_text)
   end
 
   def check
-    Formatter.display("Orders so far:", OrderPresenter.todays_orders.to_json)
+    Formatter.display("Orders so far:", check_text)
+  end
+
+  private
+
+  def reply_text
+    CustomReply.format(text)
+  end
+
+  def check_text
+    OrderPresenter.todays_orders_slack_format
   end
 end
