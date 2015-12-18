@@ -14,6 +14,7 @@ class SlackResponse
 
       def display
         {
+          text: '',
           attachments: [
             {
               fallback: 'Menu',

@@ -126,6 +126,7 @@ describe CommandsController do
       let(:text) { 'menu' }
       let(:expected_response) {
         {
+          'text' => '',
           'attachments' => [
             {
               'fallback' => 'Menu',

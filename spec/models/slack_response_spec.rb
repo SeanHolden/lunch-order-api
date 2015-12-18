@@ -61,6 +61,7 @@ describe SlackResponse do
   describe '#menu' do
     let(:expected_hash) {
       {
+        text: '',
         attachments: [
           {
             fallback: 'Menu',
