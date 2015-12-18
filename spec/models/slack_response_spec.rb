@@ -57,4 +57,22 @@ describe SlackResponse do
       expect(subject.check).to eql(expected_hash)
     end
   end
+
+  describe '#menu' do
+    let(:expected_hash) {
+      {
+        response_type: 'in_channel',
+        text: 'menu',
+        attachments: [
+          {
+            fallback: 'Menu',
+            image_url: 'http://i.imgur.com/1sos6Yu.jpg',
+          }
+        ]
+      }
+    }
+    it 'returns expected hash' do
+      expect(subject.menu).to eql(expected_hash)
+    end
+  end
 end

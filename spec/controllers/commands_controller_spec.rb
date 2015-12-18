@@ -126,12 +126,14 @@ describe CommandsController do
       let(:text) { 'menu' }
       let(:expected_response) {
         {
+          'response_type' => 'in_channel',
+          'text' => 'menu',
           'attachments' => [
             {
               'fallback' => 'Menu',
-              'image_url' => 'https://files.slack.com/files-pri/T024YSFJY-F0B69QBM5/hatch.jpg'
+              'image_url' => 'http://i.imgur.com/1sos6Yu.jpg',
             }
-          ],
+          ]
         }
       }
 

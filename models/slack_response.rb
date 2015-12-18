@@ -19,7 +19,7 @@ class SlackResponse
   end
 
   def menu
-    Formatter::Image.display('https://files.slack.com/files-pri/T024YSFJY-F0B69QBM5/hatch.jpg')
+    Formatter::Image.display('http://i.imgur.com/1sos6Yu.jpg')
   end
 
   private
