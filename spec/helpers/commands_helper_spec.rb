@@ -33,6 +33,53 @@ describe CommandsHelper do
     end
   end
 
+  describe '#cancel_other_user_orders' do
+    let(:todays_orders) { double('Orders') }
+    let(:names) { ['someonesorder', 'johnsmith'] }
+
+    before do
+      allow(Order).to receive(:todays_orders).and_return(todays_orders)
+      allow(todays_orders).to receive(:pluck).with(:name).and_return(names)
+      allow(todays_orders).to receive(:destroy_all)
+    end
+
+    context 'other user exists in todays orders' do
+      let(:text) { 'cancel someonesorder' }
+      let(:expected_hash) {
+        {
+          response_type: 'in_channel',
+          text: 'All orders cancelled for someonesorder',
+          attachments: [{ text: '' }]
+        }
+      }
+
+      it 'cancels all todays orders for other user' do
+        expect(todays_orders).to receive(:destroy_all).
+          with(name: 'someonesorder')
+        cancel_other_user_orders
+      end
+
+      it 'returns expected hash' do
+        expect(cancel_other_user_orders).to eql(expected_hash)
+      end
+    end
+
+    context 'other user DOES NOT exist in todays orders' do
+      let(:text) { 'cancel blahblah' }
+      let(:expected_hash) {
+        {
+          response_type: 'in_channel',
+          text: 'blahblah is not a valid username',
+          attachments: [{ text: 'No order was cancelled' }]
+        }
+      }
+
+      it 'returns appropriate response' do
+        expect(cancel_other_user_orders).to eql(expected_hash)
+      end
+    end
+  end
+
   describe '#slack_response' do
     let(:mock_slack_response) { double(SlackResponse) }
 

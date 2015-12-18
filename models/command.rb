@@ -10,6 +10,10 @@ class Command
     command == 'cancel'
   end
 
+  def special_cancel?
+    command == 'cancel' && contains_options?
+  end
+
   def reply?
     command == 'reply'
   end
@@ -23,6 +27,10 @@ class Command
   end
 
   private
+
+  def contains_options?
+    text.split.length > 1
+  end
 
   def command
     text.split.first.downcase

@@ -19,6 +19,22 @@ describe Command do
     end
   end
 
+  describe '#special_cancel?' do
+    subject { command.special_cancel? }
+
+    context 'text contains just cancel command' do
+      let(:text) { 'cancel'}
+
+      it { is_expected.to eql(false) }
+    end
+
+    context 'text contains more than just cancel command' do
+      let(:text) { 'cancel johnsmith'}
+
+      it { is_expected.to eql(true) }
+    end
+  end
+
   describe '#reply?' do
     subject { command.reply? }
 

@@ -7,6 +7,15 @@ module CommandsHelper
     Order.todays_orders.destroy_all(name: name)
   end
 
+  def cancel_other_user_orders
+    if contains_name_of_other_user?
+      Order.todays_orders.destroy_all(name: options.first)
+      slack_response.special_cancel
+    else
+      slack_response.special_cancel_failed
+    end
+  end
+
   def slack_response
     SlackResponse.new(name, text)
   end
@@ -39,6 +48,14 @@ module CommandsHelper
 
   def formatted_reply
     CustomReply.format(text)
+  end
+
+  def contains_name_of_other_user?
+    Order.todays_orders.pluck(:name).include?(options.first)
+  end
+
+  def options
+    @options ||= Option.new(text)
   end
 
   def name

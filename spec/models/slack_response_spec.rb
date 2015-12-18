@@ -19,6 +19,36 @@ describe SlackResponse do
     end
   end
 
+  describe '#special_cancel' do
+    let(:text) { 'cancel someonesorder' }
+    let(:expected_hash) {
+      {
+        response_type: 'in_channel',
+        text: 'All orders cancelled for someonesorder',
+        attachments: [{ text: '' }],
+      }
+    }
+
+    it 'returns expected hash' do
+      expect(subject.special_cancel).to eql(expected_hash)
+    end
+  end
+
+  describe '#special_cancel_failed' do
+    let(:text) { 'cancel someonesorder' }
+    let(:expected_hash) {
+      {
+        response_type: 'in_channel',
+        text: 'someonesorder is not a valid username',
+        attachments: [{ text: 'No order was cancelled' }],
+      }
+    }
+
+    it 'returns expected hash' do
+      expect(subject.special_cancel_failed).to eql(expected_hash)
+    end
+  end
+
   describe '#reply' do
     let(:text) { 'reply some reply text' }
     let(:expected_hash) {

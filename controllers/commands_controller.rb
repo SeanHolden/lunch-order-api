@@ -5,6 +5,8 @@ class CommandsController < ApplicationController
 
   post '/' do
     case
+    when command.special_cancel? && overseer?
+      json cancel_other_user_orders
     when command.cancel?
       cancel_user_orders
       json slack_response.cancel

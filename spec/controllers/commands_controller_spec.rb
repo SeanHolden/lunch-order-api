@@ -94,6 +94,87 @@ describe CommandsController do
       end
     end
 
+    context 'has special cancel command' do
+      let(:mock_todays_orders) { double('TodaysOrders') }
+
+      before do
+        allow(Overseer).to receive(:pluck).with(:user_id).and_return([user_id])
+        allow(Order).to receive(:todays_orders).and_return(mock_todays_orders)
+        allow(mock_todays_orders).to receive(:destroy_all).
+          with(name: 'someonesorder')
+        allow(mock_todays_orders).to receive(:destroy_all).
+          with(name: 'John Smith')
+        allow(mock_todays_orders).to receive(:pluck).with(:name).
+          and_return(['someonesorder'])
+      end
+
+      context 'is overseer' do
+        let(:user_id) { '123' }
+        let(:expected_hash) {
+          {
+            'response_type' => 'in_channel',
+            'text' => 'All orders cancelled for someonesorder',
+            'attachments' => [{ 'text' => '' }],
+          }
+        }
+
+        context 'gives correct name of user' do
+          let(:text) { 'cancel someonesorder' }
+
+          it 'returns status of 200' do
+            post '/', params
+            expect(last_response.status).to eql(200)
+          end
+
+          it 'response is expected json hash' do
+            post '/', params
+            expect(JSON.parse(last_response.body)).to eql(expected_hash)
+          end
+        end
+
+        context 'gives incorrect name of user' do
+          let(:text) { 'cancel someonesorder2' }
+          let(:expected_hash) {
+            {
+              'response_type' => 'in_channel',
+              'text' => 'someonesorder2 is not a valid username',
+              'attachments' => [{ 'text' => 'No order was cancelled' }],
+            }
+          }
+
+          it 'returns status of 200' do
+            post '/', params
+            expect(last_response.status).to eql(200)
+          end
+
+          it 'response is expected json hash' do
+            post '/', params
+            expect(JSON.parse(last_response.body)).to eql(expected_hash)
+          end
+        end
+      end
+
+      context 'is NOT overseer' do
+        let(:user_id) { '456' }
+
+        context 'gives correct name of user' do
+          let(:text) { 'cancel someonesorder' }
+          let(:expected_response) {
+            {
+              'response_type' => 'in_channel',
+              'text' => 'All orders cancelled for John Smith',
+              'attachments'=>[{ 'text' => '' }],
+            }
+          }
+
+          it 'response is NOT special, just normal cancel json hash' do
+            post '/', params
+            expect(JSON.parse(last_response.body)).to eql(expected_response)
+          end
+        end
+      end
+    end
+
     context 'has cancel command' do
       let(:text) { 'cancel' }
       let(:todays_orders) { [double('TodaysOrders')] }
