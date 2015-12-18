@@ -34,4 +34,20 @@ describe Command do
       it { is_expected.to eql(false) }
     end
   end
+
+  describe '#menu?' do
+    subject { command.menu? }
+
+    context 'text contains menu command' do
+      let(:text) { 'menu'}
+
+      it { is_expected.to eql(true) }
+    end
+
+    context 'text does not contain menu command' do
+      let(:text) { 'Chicken burger'}
+
+      it { is_expected.to eql(false) }
+    end
+  end
 end

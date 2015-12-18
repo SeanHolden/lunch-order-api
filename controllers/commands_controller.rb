@@ -8,6 +8,8 @@ class CommandsController < ApplicationController
     when command.cancel?
       cancel_user_orders
       json slack_response.cancel
+    when command.menu?
+      json slack_response.menu
     when command.reply? && overseer?
       reply.send_sms
       json slack_response.reply

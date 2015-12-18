@@ -18,6 +18,10 @@ class Command
     command == 'check'
   end
 
+  def menu?
+    command == 'menu'
+  end
+
   private
 
   def command

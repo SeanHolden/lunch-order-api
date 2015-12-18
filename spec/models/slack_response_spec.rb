@@ -36,20 +36,21 @@ describe SlackResponse do
 
   describe '#check' do
     let(:todays_orders) {
-      [{ name: 'a', order: 'b' }, { name: 'c', order: 'd'}]
+      "a: b\nc: d"
     }
     let(:expected_hash) {
       {
         response_type: 'in_channel',
         text: 'Orders so far:',
         attachments: [
-          { text: '[{"name":"a","order":"b"},{"name":"c","order":"d"}]' }
+          { text: "a: b\nc: d" }
         ],
       }
     }
 
     before do
-      allow(OrderPresenter).to receive(:todays_orders).and_return(todays_orders)
+      allow(OrderPresenter).to receive(:todays_orders_slack_format).
+        and_return(todays_orders)
     end
 
     it 'returns expected hash' do

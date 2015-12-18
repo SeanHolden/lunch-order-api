@@ -5,7 +5,7 @@ describe SlackResponse::Formatter do
   let(:secondary) { 'secondary text' }
 
   describe '#display' do
-    subject { SlackResponse::Formatter.new(text, secondary).display }
+    subject { SlackResponse::Formatter.display(text, secondary) }
 
     let(:output) {
       {

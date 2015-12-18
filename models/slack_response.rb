@@ -18,6 +18,10 @@ class SlackResponse
     Formatter.display("Orders so far:", check_text)
   end
 
+  def menu
+    Formatter::Image.display('https://files.slack.com/files-pri/T024YSFJY-F0B69QBM5/hatch.jpg')
+  end
+
   private
 
   def reply_text

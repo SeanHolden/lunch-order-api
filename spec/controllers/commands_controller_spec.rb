@@ -122,6 +122,22 @@ describe CommandsController do
       end
     end
 
+    context 'has menu command' do
+      let(:text) { 'menu' }
+      let(:expected_response) {
+        {
+          'attachments' => [
+            { 'image_url' => 'https://files.slack.com/files-pri/T024YSFJY-F0B69QBM5/hatch.jpg' }
+          ],
+        }
+      }
+
+      it 'responds with menu iamge' do
+        post '/', params
+        expect(JSON.parse(last_response.body)).to eql(expected_response)
+      end
+    end
+
     context 'has reply command' do
       let(:text) { 'reply this is a string of text' }
       let(:sms_client) { double(Sms::Client) }
