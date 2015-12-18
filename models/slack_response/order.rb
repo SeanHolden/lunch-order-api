@@ -1,4 +1,4 @@
-module SlackResponse
+class SlackResponse
   class Order
     attr_reader :name, :text_order
     private :name, :text_order

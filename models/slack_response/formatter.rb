@@ -1,4 +1,4 @@
-module SlackResponse
+class SlackResponse
   class Formatter
     attr_reader :text, :secondary
     private :text, :secondary
