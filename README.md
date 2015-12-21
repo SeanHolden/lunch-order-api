@@ -20,14 +20,14 @@ Other commands are as follows:
 
 __Users with special privileges can also do the following:__
 
-`/hatch cancel someusername` => users with special privileges can cancel another user's order (e.g. someone places a "joke" order in the hope they can get a rude word sent to the sandwich shop... it happens!)
+`/hatch cancel someusername` => cancel another user's order (e.g. someone places a "joke" order in the hope they can get a rude word sent to the sandwich shop... it happens!)
 
 `/hatch check` => get a list of all orders placed today so far
 
 `/hatch reply insert_reply_here` => for example, if the shop reply to an order to say they are out of chicken, you can reply to say "ok, beef is fine"
 
 ###Further development?
-Well, there's been talk of building Paypal integration and also programming a drone to make the deliveries to avoid having to leave your chair at all!
+Well, there's been talk of programming a drone to make the deliveries to avoid having to leave your chair at all!
 Unfortunately this will probably never happen as there is only so much time I am willing to put into a sandwich ordering app... but hey, I can dream.
 
 ###I have an idea for a new feature!
