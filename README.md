@@ -49,3 +49,4 @@ SMS_TO_NUMBER      #<-- number you want to send the SMS to
 TWILIO_ACCOUNT_SID #<-- Twilio Auth
 TWILIO_AUTH_TOKEN  #<-- Twilio Auth
 ```
+Then run `bundle exec foreman start` to start the server
