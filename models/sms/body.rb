@@ -1,7 +1,7 @@
 class Sms
   class Body
     def to_s
-      "Hello. Could I please place an order to collect around 12.\n#{order_list}\nThank you!"
+      "Hello. Could I please place an order to collect around 1pm.\n#{order_list}\nThank you!"
     end
 
     private
