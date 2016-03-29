@@ -19,7 +19,7 @@ describe Sms::Body do
       let(:text_orders) {
         [order.text_order, order.text_order, order.text_order]
       }
-      let(:expected_body) { "Hello. Could I please place another order to collect around 12.\n1) Chicken Burger\n2) Chicken Burger\n3) Chicken Burger\nThank you!" }
+      let(:expected_body) { "Hello. Could I please place an order to collect around 12.\n1) Chicken Burger\n2) Chicken Burger\n3) Chicken Burger\nThank you!" }
 
       it 'returns text containing numbered list' do
         expect(body.to_s).to eql(expected_body)
@@ -30,7 +30,7 @@ describe Sms::Body do
       let(:text_orders) {
         [order.text_order]
       }
-      let(:expected_body) { "Hello. Could I please place another order to collect around 12.\n- Chicken Burger\nThank you!" }
+      let(:expected_body) { "Hello. Could I please place an order to collect around 12.\n- Chicken Burger\nThank you!" }
 
       it 'returns text containing single order preceded by a dash' do
         expect(body.to_s).to eql(expected_body)

@@ -9,13 +9,13 @@ describe SlackResponse::Order do
     let(:mock_today) { Date.parse("2016-01-01") }
 
     before do
-      allow(DateTime).to receive(:now).and_return(mock_time)
+      allow(Time).to receive(:now).and_return(mock_time)
       allow(Date).to receive(:today).and_return(mock_today)
       allow(Time).to receive(:now).and_return(mock_time)
     end
 
     context 'before time deadline' do
-      let(:mock_time) { DateTime.parse("2016-01-01 10:00am") }
+      let(:mock_time) { Time.parse("2016-01-01 10:00am") }
       let(:text) { 'Order placed for John Smith.' }
       let(:secondary) { "A text will be sent at 11:00am for:\nChicken Burger\nIt will be ready for pickup at 12:00pm" }
 
@@ -26,7 +26,7 @@ describe SlackResponse::Order do
     end
 
     context 'after time deadline' do
-      let(:mock_time) { DateTime.parse("2016-01-01 11:45am") }
+      let(:mock_time) { Time.parse("2016-01-01 11:45am") }
       let(:text) {
         'Sorry, John Smith. Order deadline was 11:00am. It is currently 11:45am'
       }

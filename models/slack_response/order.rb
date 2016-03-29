@@ -47,7 +47,7 @@ class SlackResponse
     end
 
     def on_time?
-      DateTime.now < DateTime.parse("#{Date.today} #{deadline}")
+      Time.now < Time.parse("#{Date.today} #{deadline}")
     end
 
     def time
