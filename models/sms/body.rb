@@ -7,27 +7,21 @@ class Sms
     private
 
     def order_list
-      if multiple_orders?
-        multiple_order_list.join("\n")
-      else
-        single_order
-      end
+      todays_orders.each_with_index.map { |order, i|
+        "#{prefix(i+1)} #{order.text_order} (#{order.name})"
+      }.join("\n")
     end
 
-    def multiple_order_list
-      text_orders.each_with_index.map { |order, i| "#{i+1}) #{order}" }
-    end
-
-    def single_order
-      '- ' + Order.todays_orders.last.text_order
+    def prefix(i)
+      multiple_orders? ? "#{i})" : '-'
     end
 
     def multiple_orders?
-      text_orders.length > 1
+      @multiple_orders ||= todays_orders.length > 1
     end
 
-    def text_orders
-      @text_orders ||= Order.todays_orders.pluck(:text_order)
+    def todays_orders
+      @todays_orders ||= Order.todays_orders
     end
   end
 end
