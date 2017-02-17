@@ -21,9 +21,12 @@ class SmsController < ApplicationController
   end
 
   post '/status' do
-    if params[:MessageStatus]
-      sms_status.send_to_slack_channel
-      SmsDeliveryReport.create(status: params[:MessageStatus])
-    end
+    puts '*' * 100
+    puts params
+    puts '*' * 100
+    #if params[:MessageStatus]
+      #sms_status.send_to_slack_channel
+      #SmsDeliveryReport.create(status: params[:MessageStatus])
+    #end
   end
 end
