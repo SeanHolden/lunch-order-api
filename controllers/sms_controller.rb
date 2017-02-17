@@ -21,12 +21,12 @@ class SmsController < ApplicationController
   end
 
   post '/status' do
-    puts '*' * 100
-    puts params
-    puts '*' * 100
-    #if params[:MessageStatus]
-      #sms_status.send_to_slack_channel
-      #SmsDeliveryReport.create(status: params[:MessageStatus])
-    #end
+    if params[:Body]
+      sms_status.send_to_slack_channel
+      SmsDeliveryReport.create(status: params[:MessageStatus])
+    else
+      puts 'ERROR: Body param not found'
+      puts "params: #{params}"
+    end
   end
 end
