@@ -13,7 +13,7 @@ module SmsHelper
   end
 
   def sms_status
-    Webhook::SlackSmsStatus.new('The Hatch SMS Status', params[:Body])
+    Webhook::SlackSmsStatus.new('The Hatch SMS Status', params[:MessageStatus])
   end
 
   def authorized?
