@@ -17,7 +17,7 @@ describe SlackResponse::Order do
     context 'before time deadline' do
       let(:mock_time) { Time.parse("2016-01-01 10:00am") }
       let(:text) { 'Order placed for John Smith.' }
-      let(:secondary) { "A text will be sent at 11:00am for:\nChicken Burger\nIt will be ready for pickup at 12:00pm" }
+      let(:secondary) { "A text will be sent at 11:30am for:\nChicken Burger\nIt will be ready for pickup at 12:00pm" }
 
       it 'returns order_placed message' do
         expect(SlackResponse::Formatter).to receive(:display).with(text, secondary)
@@ -28,7 +28,7 @@ describe SlackResponse::Order do
     context 'after time deadline' do
       let(:mock_time) { Time.parse("2016-01-01 11:45am") }
       let(:text) {
-        'Sorry, John Smith. Order deadline was 11:00am. It is currently 11:45am'
+        'Sorry, John Smith. Order deadline was 11:30am. It is currently 11:45am'
       }
       let(:secondary) {
         'You can still text your own order with: +447123456789'
