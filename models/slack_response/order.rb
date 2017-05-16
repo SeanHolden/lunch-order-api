@@ -55,7 +55,7 @@ class SlackResponse
     end
 
     def deadline
-      '11:30am'
+      '11:15am'
     end
 
     def pickup
