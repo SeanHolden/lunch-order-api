@@ -29,6 +29,19 @@ describe Order do
     end
   end
 
+  describe 'before_create' do
+    describe '#remove_duplicate' do
+      before do
+        Order.delete_all
+        Order.create(text_order: 'testing', name: 'sean')
+      end
+
+      it 'removes duplicate order if one was made before this one by same person' do
+        expect{ Order.create(text_order: 'testing', name: 'sean') }.not_to change{ Order.count }.from(1)
+      end
+    end
+  end
+
   describe 'scopes' do
     describe '#todays_orders' do
       it 'calls the correct query' do
