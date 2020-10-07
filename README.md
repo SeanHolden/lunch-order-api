@@ -11,7 +11,7 @@ When a user types the command, their order is added to a database. At a schedule
 ### What happens if I place an order after the SMS has been sent?
 You get a nice message to explain that you are too late to order, but it also gives you the mobile number of the shop if you would like to place a manual order yourself.
 
-###D oes it do anything else?
+### Does it do anything else?
 Other commands are as follows:
 
 `/hatch menu` => returns a menu into the slack channel that only you can see.
