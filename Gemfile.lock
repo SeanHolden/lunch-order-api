@@ -14,7 +14,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    addressable (2.3.8)
+    addressable (2.8.0)
+      public_suffix (>= 2.0.2, < 5.0)
     arel (6.0.3)
     builder (3.2.2)
     crack (0.4.2)
@@ -31,6 +32,7 @@ GEM
     multi_json (1.11.2)
     multipart-post (2.0.0)
     mysql2 (0.3.20)
+    public_suffix (3.1.1)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
