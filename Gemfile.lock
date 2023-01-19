@@ -31,7 +31,7 @@ GEM
     multi_json (1.11.2)
     multipart-post (2.0.0)
     mysql2 (0.3.20)
-    rack (1.6.4)
+    rack (1.6.13)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
